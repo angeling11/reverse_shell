@@ -9,7 +9,6 @@ import sys
 LHOST = "127.0.0.1"
 LPORT = 54321
 
-
 def c_signal(sig, frame):
 	print()
 	try:

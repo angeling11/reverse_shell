@@ -50,8 +50,8 @@ def shell():
 		if command == "q" or command == "exit":
 			print("Connection Closed!")
 			break
-		elif command[:2] == "cd" or command[:2] == "cd " and command[3:].replace(" ", "") == "":
-			if len(command) > 2:
+		elif command[:2] == "cd":
+			if len(command) > 2 and command[2:].replace(" ", "") != "":
 				if command[2] != " ":
 					reliable_send("Can't execute that command!")
 				else:
