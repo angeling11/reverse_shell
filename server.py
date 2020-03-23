@@ -6,8 +6,8 @@ import signal
 import sys
 
 # Variables
-LHOST = "127.0.0.1"
-LPORT = 54321
+LHOST = "127.0.0.1"	#Local host
+LPORT = 54321		#Local port
 
 def c_signal(sig, frame):
 	print()
