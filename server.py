@@ -61,13 +61,19 @@ def shell():
 			result = reliable_recv()
 			print(result)
 
-# Signal listener
-signal.signal(signal.SIGINT, c_signal)
+def close():
+	# Close connection
+	print("Connection Closed!")
+	s.close()
 
-# Functions call
-init_server()
-shell()
+def main():
+	# Signal SIGINT listener
+	signal.signal(signal.SIGINT, c_signal)
 
-# Close connection
-print("Connection Closed!")
-s.close()
+	# Functions call
+	init_server()
+	shell()
+	close()
+
+if __name__ == "__main__":
+	main()

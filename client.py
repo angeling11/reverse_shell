@@ -28,6 +28,7 @@ def reliable_recv():
 			return json.loads(json_data)
 		except ValueError:
 			continue
+
 def init_client():
 	global s
 
@@ -71,9 +72,16 @@ def shell():
 			except:
 				reliable_send("Can't execute that command!")
 
-# Functions call
-init_client()
-shell()
-
 # Close connection
-s.close()
+def close():
+	s.close()
+
+
+# Functions call
+def main():
+	init_client()
+	shell()
+	close()
+
+if __name__ == "__main__":
+	main()
